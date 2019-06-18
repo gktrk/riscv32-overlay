@@ -16,13 +16,10 @@ SLOT="2.2"
 
 EMULTILIB_PKG="true"
 
-if [[ ${PV} == 9999* ]]; then
-	EGIT_REPO_URI="https://sourceware.org/git/glibc.git"
-	inherit git-r3
-else
-	KEYWORDS="~riscv32"
-	SRC_URI="mirror://gnu/glibc/${P}.tar.xz"
-fi
+EGIT_REPO_URI="https://github.com/riscv/riscv-glibc.git"
+EGIT_BRANCH="riscv-glibc-2.29"
+inherit git-r3
+KEYWORDS="~riscv32"
 
 RELEASE_VER=${PV}
 
