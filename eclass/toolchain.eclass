@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
@@ -1217,6 +1217,10 @@ toolchain_src_configure() {
 		# Add --with-abi flags to set default ABI
 		confgcc+=( --with-abi=$(gcc-abi-map ${TARGET_DEFAULT_ABI}) )
 		;;
+	riscv32)
+		# Add --with-abi flags to set default ABI
+		confgcc+=( --with-abi=$(gcc-abi-map ${TARGET_DEFAULT_ABI}) )
+		;;
 	esac
 
 	# if the target can do biarch (-m32/-m64), enable it.  overhead should
@@ -1644,6 +1648,7 @@ gcc-abi-map() {
 	local map=()
 	case ${CTARGET} in
 	mips*)   map=("o32 32" "n32 n32" "n64 64") ;;
+	riscv32*)  map=("ilp32f ilp32f" "ilp32 ilp32") ;;
 	riscv*)  map=("lp64d lp64d" "lp64 lp64") ;;
 	x86_64*) map=("amd64 m64" "x86 m32" "x32 mx32") ;;
 	esac
