@@ -1,0 +1,23 @@
+Fix 'make install-headers' when cross-compiler is not available yet.
+Gentoo passes CPPFLAGS='-D__riscv_xlen=64 ... ' to work it around.
+
+Unfortunately depend file generation does not use $(CPPFLAGS).
+This causes install to fail as:
+
+../sysdeps/riscv/bits/wordsize.h:22:3: error: #error unsupported ABI
+   22 | # error unsupported ABI
+      |   ^~~~~
+../sysdeps/riscv/bits/wordsize.h:28:3: error: #error "rv32i-based targets are not supported"
+   28 | # error "rv32i-based targets are not supported"
+      |   ^~~~~
+
+The fix is to pass through 'CPPFLAGS' (and 'CFLAGS' while at it).
+
+Bug: https://bugs.gentoo.org/686248
+--- a/Makerules
++++ b/Makerules
+@@ -1542,3 +1542,3 @@ $(stdio_lim:h=st): $(..)stdio-common/stdio_lim.h.in $(..)Rules \
+ 	} |								\
+-	$(CC) -E -dM -MD -MP -MF $(@:st=dT) -MT '$(@:st=h) $(@:st=d)' 	\
++	$(CC) $(CFLAGS) $(CPPFLAGS) -E -dM -MD -MP -MF $(@:st=dT) -MT '$(@:st=h) $(@:st=d)' 	\
+ 	      $(CPPUNDEFS) $(+includes) -xc - -o $(@:st=hT)

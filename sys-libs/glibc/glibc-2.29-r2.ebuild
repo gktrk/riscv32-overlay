@@ -749,6 +749,7 @@ src_prepare() {
 	# fi
 
 	default
+	eapply "${FILESDIR}"/${PN}-2.28-cppflags.patch
 
 	gnuconfig_update
 
