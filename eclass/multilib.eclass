@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: multilib.eclass
@@ -384,6 +384,20 @@ multilib_env() {
 
 			: ${MULTILIB_ABIS=ppc64 ppc}
 			: ${DEFAULT_ABI=ppc64}
+		;;
+		riscv32*)
+			export CFLAGS_ilp32f=${CFLAGS_ilp32f--mabi=ilp32f}
+			export CHOST_ilp32f=${CTARGET}
+			export CTARGET_ilp32f=${CTARGET}
+			export LIBDIR_ilp32f="lib32/ilp32f"
+
+			export CFLAGS_ilp32=${CFLAGS_ilp32--mabi=ilp32}
+			export CHOST_ilp32=${CTARGET}
+			export CTARGET_ilp32=${CTARGET}
+			export LIBDIR_ilp32="lib32/ilp32"
+
+			: ${MULTILIB_ABIS=ilp32f ilp32}
+			: ${DEFAULT_ABI=ilp32f}
 		;;
 		riscv64*)
 			export CFLAGS_lp64d=${CFLAGS_lp64d--mabi=lp64d}
