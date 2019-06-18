@@ -742,11 +742,11 @@ src_unpack() {
 }
 
 src_prepare() {
-	if ! use vanilla ; then
-		elog "Applying Gentoo Glibc Patchset ${RELEASE_VER}-${PATCH_VER}"
-		eapply "${WORKDIR}"/patches
-		einfo "Done."
-	fi
+	# if ! use vanilla ; then
+	# 	elog "Applying Gentoo Glibc Patchset ${RELEASE_VER}-${PATCH_VER}"
+	# 	eapply "${WORKDIR}"/patches
+	# 	einfo "Done."
+	# fi
 
 	default
 
