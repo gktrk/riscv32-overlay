@@ -1,0 +1,36 @@
+# Copyright 2019 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+# RISC-V profile for rv32gc multilib
+
+CFLAGS="-O2 -pipe"
+CXXFLAGS="${CFLAGS}"
+FFLAGS="${CFLAGS}"
+FCFLAGS="${CFLAGS}"
+
+# Multilib ABIs
+MULTILIB_ABIS="ilp32d"
+DEFAULT_ABI="ilp32d"
+ABI="ilp32d"
+
+# Library directories
+LIBDIR_ilp32d="lib32/ilp32d"
+SYMLINK_LIB="no"
+
+# Flags for ilp32d
+CFLAGS_ilp32d="-mabi=ilp32d"
+LDFLAGS_ilp32d="-m elf32lriscv"
+CHOST_ilp32d="riscv32-unknown-linux-gnu"
+
+# Enable ilp32d by default
+ABI_RISCV32="ilp32d"
+
+# We hide the useflags for the ABIs
+USE_EXPAND_HIDDEN="ABI_RISCV32"
+
+# Implicitly enable ilp32d in ebuilds without multilib support
+IUSE_IMPLICIT="abi_riscv32_ilp32d"
+
+# Enable Python 3.7 since we can't use earlier versions
+PYTHON_TARGETS="python3_7"
+PYTHON_SINGLE_TARGET="python3_7"

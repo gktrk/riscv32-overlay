@@ -8,10 +8,6 @@
 
 # RISC-V Profiles
 # @MAINTAINER: gokturk@gentoo.org
-riscv32		default/linux/riscv32/17.0/rv32i		stable
-riscv32		default/linux/riscv32/17.0/rv32i/ilp32		dev
-riscv32		default/linux/riscv32/17.0/rv32imafc		stable
-riscv32		default/linux/riscv32/17.0/rv32imafc/ilp32f	dev
-riscv32		default/linux/riscv32/17.0/rv32imafc/ilp32	exp
+riscv32		default/linux/riscv32/17.0/rv32gc		stable
 
 # vim: set ts=8:
