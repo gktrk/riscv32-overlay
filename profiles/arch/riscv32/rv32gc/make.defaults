@@ -14,7 +14,7 @@ DEFAULT_ABI="ilp32d"
 ABI="ilp32d"
 
 # Library directories
-LIBDIR_ilp32d="lib32/ilp32d"
+LIBDIR_ilp32d="lib32"
 SYMLINK_LIB="no"
 
 # Flags for ilp32d
