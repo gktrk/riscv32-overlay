@@ -1,7 +1,7 @@
 # Copyright 2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-# RISC-V profile for rv32gc multilib
+# RISC-V profile for rv32gc non-multilib
 
 CFLAGS="-O2 -pipe"
 CXXFLAGS="${CFLAGS}"
@@ -14,7 +14,7 @@ DEFAULT_ABI="ilp32d"
 ABI="ilp32d"
 
 # Library directories
-LIBDIR_ilp32d="lib32"
+LIBDIR_ilp32d="lib"
 SYMLINK_LIB="no"
 
 # Flags for ilp32d

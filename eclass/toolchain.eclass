@@ -1167,7 +1167,7 @@ toolchain_src_configure() {
 		[[ ${arm_arch} == armv7? ]] && arm_arch=${arm_arch/7/7-}
 		# See if this is a valid --with-arch flag
 		if (srcdir=${S}/gcc target=${CTARGET} with_arch=${arm_arch};
-		    . "${srcdir}"/config.gcc) &>/dev/null
+			. "${srcdir}"/config.gcc) &>/dev/null
 		then
 			confgcc+=( --with-arch=${arm_arch} )
 		fi
@@ -1219,7 +1219,7 @@ toolchain_src_configure() {
 		;;
 	riscv32)
 		# Add --with-abi flags to set default ABI
-		confgcc+=( --with-abi=$(gcc-abi-map ${TARGET_DEFAULT_ABI}) )
+		confgcc+=( --with-abi="ilp32d" )
 		;;
 	esac
 
@@ -1648,7 +1648,6 @@ gcc-abi-map() {
 	local map=()
 	case ${CTARGET} in
 	mips*)   map=("o32 32" "n32 n32" "n64 64") ;;
-	riscv32*)  map=("ilp32f ilp32f" "ilp32 ilp32") ;;
 	riscv*)  map=("lp64d lp64d" "lp64 lp64") ;;
 	x86_64*) map=("amd64 m64" "x86 m32" "x32 mx32") ;;
 	esac
